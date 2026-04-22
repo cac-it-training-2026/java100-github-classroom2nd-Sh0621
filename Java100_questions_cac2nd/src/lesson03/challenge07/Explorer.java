@@ -77,22 +77,68 @@ public class Explorer {
 		System.out.println("ワニ3匹発見！\n");
 		System.out.println("グーワニかチョキワニかパーワニのどれかです。\n");
 
-		int alligator = 0;
-		int hand = 0;
+		int alligator;
+		int hand;
 		int i = 0;
+		boolean invalid = false; // 範囲外チェック用
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+		while (i < 3) {
 
-		//ここにwhile文、if文を利用した処理を記述
-
-
-		if (i == 3) {
 			System.out.println("隊長：");
-			System.out.println("川を渡り切りました。");
-		} else {
-			System.out.println("通り抜けに失敗しました...");
+			System.out.print("どの手を出して通り抜けますか\n（グー… 1 : チョキ… 2 : パー… 3）＞");
+
+			String choice = br.readLine();
+			hand = Integer.parseInt(choice);
+
+			// 範囲外チェック（ここでは何もしない）
+			if (hand < 1 || hand > 3) {
+				invalid = true;
+				break;
+			}
+
+			alligator = (int) (Math.random() * 3) + 1;
+
+			System.out.println("隊長：");
+
+			// 勝ち or 引き分け
+			if ((hand == 1 && alligator == 2) ||
+					(hand == 2 && alligator == 3) ||
+					(hand == 3 && alligator == 1) ||
+					(hand == alligator)) {
+
+				if (alligator == 1)
+					System.out.println("相手はグーワニでした。");
+				if (alligator == 2)
+					System.out.println("相手はチョキワニでした。");
+				if (alligator == 3)
+					System.out.println("相手はパーワニでした.");
+
+				System.out.println((i + 1) + "匹目通り抜け成功！");
+				i++;
+
+			} else {
+				// 負け
+				if (alligator == 1)
+					System.out.println("相手はグーワニでした。");
+				if (alligator == 2)
+					System.out.println("相手はチョキワニでした。");
+				if (alligator == 3)
+					System.out.println("相手はパーワニでした.");
+
+				System.out.println("通り抜けに失敗しました...");
+				break;
+			}
 		}
 
+		// 最後にまとめて表示
+		if (invalid) {
+			System.out.println("隊長：");
+			System.out.println("そんな手はありませんよ。もう一度入れてください。");
+		} else if (i == 3) {
+			System.out.println("隊長：");
+			System.out.println("川を渡り切りました。");
+		}
 	}
 }
