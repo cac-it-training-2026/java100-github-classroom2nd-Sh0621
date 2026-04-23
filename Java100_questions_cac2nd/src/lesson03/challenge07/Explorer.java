@@ -77,14 +77,13 @@ public class Explorer {
 		System.out.println("ワニ3匹発見！\n");
 		System.out.println("グーワニかチョキワニかパーワニのどれかです。\n");
 
-		int alligator;
-		int hand;
-		int i = 0;
-		boolean invalid = false; // 範囲外チェック用
+		int alligator;//ワニの手
+		int hand;//自分の手
+		int i = 0;//今何匹目か(0,1,2)
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		while (i < 3) {
+		while (i < 3) {//3匹終わるまで繰り返す
 
 			System.out.println("隊長：");
 			System.out.print("どの手を出して通り抜けますか\n（グー… 1 : チョキ… 2 : パー… 3）＞");
@@ -92,17 +91,18 @@ public class Explorer {
 			String choice = br.readLine();
 			hand = Integer.parseInt(choice);
 
-			// 範囲外チェック（ここでは何もしない）
+			// 範囲外
 			if (hand < 1 || hand > 3) {
-				invalid = true;
-				break;
+				System.out.println("隊長：");
+				System.out.println("そんな手はありませんよ。もう一度入れてください。");
+				continue;
 			}
 
 			alligator = (int) (Math.random() * 3) + 1;
 
 			System.out.println("隊長：");
 
-			// 勝ち or 引き分け
+			// 勝ち
 			if ((hand == 1 && alligator == 2) ||
 					(hand == 2 && alligator == 3) ||
 					(hand == 3 && alligator == 1) ||
@@ -118,8 +118,8 @@ public class Explorer {
 				System.out.println((i + 1) + "匹目通り抜け成功！");
 				i++;
 
+				//負け
 			} else {
-				// 負け
 				if (alligator == 1)
 					System.out.println("相手はグーワニでした。");
 				if (alligator == 2)
@@ -132,11 +132,7 @@ public class Explorer {
 			}
 		}
 
-		// 最後にまとめて表示
-		if (invalid) {
-			System.out.println("隊長：");
-			System.out.println("そんな手はありませんよ。もう一度入れてください。");
-		} else if (i == 3) {
+		if (i == 3) {
 			System.out.println("隊長：");
 			System.out.println("川を渡り切りました。");
 		}

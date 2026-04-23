@@ -64,26 +64,27 @@ public class Explorer {
 			geyser = (int) (Math.random() * 10 % 2);
 
 			//ここにif文、continue文を利用した処理を記述
+			//回避成功
 			if (geyser == 0) {
 				System.out.println("隊長：");
 				System.out.println((i + 1) + "個目。セーフ");
 				System.out.println("ラッキー！\n");
 				continue;
 			}
-
-			damage++;
-			System.out.println("隊長：");
-			System.out.println((i + 1) + "個目。熱湯");
-			System.out.println("うわ熱っ！（ダメージ" + damage + "）\n");
-
+			if (geyser == 1) {
+				damage++;
+				System.out.println("隊長：");
+				System.out.println((i + 1) + "個目。熱湯");
+				System.out.println("うわ熱っ！（ダメージ" + damage + "）\n");
+			}
 			if (damage == 6) {
+				System.out.println("探検隊は全滅しました。");
 				break;
+
 			}
 		}
 		if (damage != 6) {
 			System.out.println("洞窟の出口にたどり着きました。");
-		} else {
-			System.out.println("探検隊は全滅しました。");
 		}
 	}
 }
