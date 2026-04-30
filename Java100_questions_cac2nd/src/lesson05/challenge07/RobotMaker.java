@@ -31,28 +31,61 @@ package lesson05.challenge07;
 //メソッド名：getWater(引数なし、戻り値int、
 //現在の水量(フィールドwaterの値)を戻り値として返す)
 
-public class RobotMaker {
+class Robot {
+	int energy;
+	int water;
+	String name;
 
-    public static void main(String[] args) {
+	void pumpWater() {
+		System.out.println("水を" + water + "リットル出します。\n");
+	}
 
-        System.out.println("Rさん：");
-        System.out.println("でもこれランダムに水を入れた時にロボット内の水量がわかりませんね。\n");
-        System.out.println("G博士：");
-        System.out.println("そう言えばそうじゃな。よし、ちょっと待っとれ。\n");
-        System.out.println("G博士：");
-        System.out.println("......出来た！現在の水量を表示する機能じゃ。\n");
+	void randomWater() {
+		water = (int) (Math.random() * 9) + 1;
+	}
 
-        int water = 0;
+	void setWater(int water) {
+		this.water = water;
+	}
 
-        //ここでRobotクラスのインスタンスを作り、
-        //（インスタンス名はrobot）
-        //randomWaterを実行する。
-        //getWaterを実行する。
+	void makeOmlet(int eggNum, int butterNum) {
+		int egg = eggNum / 2;
+		int butter = butterNum / 5;
 
-        System.out.println("「ガ～ピィーガ～、ゲンザイノスイリョウハ" + water + "リットルデス。」\n");
+		if (egg > butter) {
+			System.out.println(egg + "人分のオムレツを作成しました。");
 
-        System.out.println("Rさん：");
-        System.out.println("なんか雑音が気になりますが、一応出来てますね。\n");
-    }
+		} else {
+			System.out.println(butter + "人分のオムレツを作成しました。");
+		}
+	}
 
+	int getWater() {
+		return water;
+	}
+
+	public class RobotMaker {
+		public static void main(String[] args) {
+
+			System.out.println("Rさん：");
+			System.out.println("でもこれランダムに水を入れた時にロボット内の水量がわかりませんね。\n");
+			System.out.println("G博士：");
+			System.out.println("そう言えばそうじゃな。よし、ちょっと待っとれ。\n");
+			System.out.println("G博士：");
+			System.out.println("......出来た！現在の水量を表示する機能じゃ。\n");
+
+			//ここでRobotクラスのインスタンスを作り、
+			//（インスタンス名はrobot）
+			//randomWaterを実行する。
+			//getWaterを実行する。
+			Robot robot = new Robot();
+			robot.randomWater();
+			int water = robot.getWater();
+
+			System.out.println("「ガ～ピィーガ～、ゲンザイノスイリョウハ" + water + "リットルデス。」\n");
+
+			System.out.println("Rさん：");
+			System.out.println("なんか雑音が気になりますが、一応出来てますね。\n");
+		}
+	}
 }
